@@ -1,6 +1,6 @@
 
 // Variables related to Fetch operations
-export const ENDPOINT = "http://127.0.0.1:9876/database/toilet_suites"
+export const ENDPOINT = "http://127.0.0.1:9876/database/"
 
 // Functions related to Fetch operations
 export const logError = (error) => {
@@ -18,4 +18,5 @@ export const validateResponse = (response) => {
 export const readResponseAsJSON = (response) => {
     return response.json();
 }
+
 

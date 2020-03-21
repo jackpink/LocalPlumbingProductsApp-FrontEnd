@@ -1,20 +1,23 @@
 import React, { Component } from 'react';
 import Form from 'react-bootstrap/Form';
+import { connect } from 'react-redux';
+
 
 class Filter extends Component {
     handleChange = (e) => {
-        this.props.update('change')
+        console.log(this.props);
+        console.log(e.target.value);
+        this.props.updateFilterProductType(e.target.value);
     }
     render() {
-        const {update} = this.props;
         return(
             <div className='filter'>
                 <Form>    
                     <Form.Group controlId="filter.ProductCategory">
                         <Form.Label>Select a Product Category</Form.Label>
                         <Form.Control as="select" onChange={this.handleChange}>
-                            <option>Toilet Suites</option>
-                            <option>Basins</option>
+                            <option value='toilet_suites'>Toilet Suites</option>
+                            <option value='basins'>Basins</option>
                         </Form.Control>
                     </Form.Group>
                 </Form>
@@ -23,5 +26,15 @@ class Filter extends Component {
     }
 }
 
+const mapDispatchToProps = (dispatch) => {
+    return {
+        updateFilterProductType: (filter_product_type) => {
+            dispatch({
+                type: 'UPDATE_FILTER_PRODUCT_TYPE',
+                filter_product_type: filter_product_type
+            })
+        }
+    }
+}
 
-export default Filter;
+export default connect(null, mapDispatchToProps)(Filter);
