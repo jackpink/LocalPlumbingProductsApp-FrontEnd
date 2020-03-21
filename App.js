@@ -7,9 +7,6 @@ import { BrowserRouter, Route } from 'react-router-dom';
 
 
 class App extends Component {
-  state = {
-    filter_product_type: null
-  }
 
   render() {
     return (
