@@ -1,33 +1,28 @@
-import React from 'react';
+import React, {Component} from 'react';
 import './App.css';
-import Filter from './Filter';
-import Results from './Results';
-import {Container, Row} from "react-bootstrap";
+import HomeView from './Views/HomeView'
+import ProductView from './Views/ProductView'
+import { Container } from "react-bootstrap";
+import { BrowserRouter, Route } from 'react-router-dom';
 
 
-function App() {
+class App extends Component {
   state = {
     filter_product_type: null
   }
-  updateProductType = (product_type) => {
-    console.log(product_type)
-  }
 
-  return (
-    <Container>
-      <div className="App">
-        <Row>
-          <p>here</p>
-        </Row>
-        <Row>
-          <Filter update={this.updateProductType} />
-        </Row>
-        <Row>
-          <Results />
-        </Row>
-      </div>
-    </Container>
-  );
+  render() {
+    return (
+      <BrowserRouter>
+        <Container>
+          <div className="App">
+          <Route exact path='/' component={HomeView} />
+          <Route path='/product' component={ProductView} />
+          </div>
+        </Container>
+      </BrowserRouter>
+    );
+  }
 }
 
 export default App;
