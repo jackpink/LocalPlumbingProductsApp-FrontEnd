@@ -17,7 +17,7 @@ class App extends Component {
         <Container>
           <div className="App">
           <Route exact path='/' component={HomeView} />
-          <Route path='/product' component={ProductView} />
+          <Route path='/product/:product_id' component={ProductView} />
           </div>
         </Container>
       </BrowserRouter>

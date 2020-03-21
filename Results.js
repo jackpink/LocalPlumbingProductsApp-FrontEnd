@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ENDPOINT } from './Utils';
+import { ENDPOINT, logError, validateResponse, readResponseAsJSON } from './Utils';
 import Product from './Product';
 import {Col, Container, Row} from "react-bootstrap";
 
@@ -18,22 +18,6 @@ class Results extends Component {
             });
             
         });
-          
-        const logError = (error) => {
-            console.log('Looks like there was a problem: \n', error);
-        }
-          
-        const validateResponse = (response) => {
-            if (!response.ok) {
-                console.log(response)
-              throw Error(response.statusText);
-            }
-            return response;
-        }
-          
-        const readResponseAsJSON = (response) => {
-            return response.json();
-        }
           
         const fetchJSON = (pathToResource) => {
             fetch(pathToResource) // 1

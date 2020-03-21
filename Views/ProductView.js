@@ -1,13 +1,58 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { ENDPOINT, logError, validateResponse, readResponseAsJSON } from '../Utils';
 
-const ProductView = () => {
-    return(
-        <div className='Product-page'>
-            <h1>Product Page</h1>
-            <Link to='/'>Back</Link>
-        </div>
-    )
+
+class ProductView extends Component {
+    state = {
+        id: null,
+        Name: null,
+        Photos: null,
+        Summary: null,
+        Specifications: null,
+    }
+    componentDidMount() {
+        let id = this.props.match.params.product_id;
+        
+        const logResult = ((result) => {
+            console.log(result[0]);
+            this.setState({
+                id: result[0]._id,
+                Name: result[0].Name,
+                Summary: result[0].Summary,
+                Photos: result[0].Photos,
+                Specifications: result[0].Specifications
+            
+            }, () => {
+                console.log("Set State")
+                console.log(this.state);
+            });
+            
+        });
+
+        const fetchJSON = (pathToResource) => {
+            fetch(pathToResource) // 1
+            .then(validateResponse) // 2
+            .then(readResponseAsJSON) // 3
+            .then(logResult) // 4
+            .catch(logError);
+          }
+          console.log("ENDPOINT : " + ENDPOINT + '/' + id);
+          fetchJSON(ENDPOINT + '/' + id);
+          
+          
+    }
+
+    
+    render() {
+        return(
+            <div className='Product-page'>
+                <h1>Product Page</h1>
+                <h2>{this.state.Name}</h2>
+                <Link to='/'>Back</Link>
+            </div>
+        )
+    }
 }
 
 export default ProductView
