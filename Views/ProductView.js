@@ -45,10 +45,18 @@ class ProductView extends Component {
 
     
     render() {
+        if (this.state.Photos === null) return null;
+
         return(
             <div className='Product-page'>
                 <h1>Product Page</h1>
                 <h2>{this.state.Name}</h2>
+                <div id="image_container">
+                    {console.log('async')}
+                    {console.log(this.state.Photos)}
+                    <img className="product_image_tile" alt="Not available" src={this.state.Photos[0]}/>
+                </div>
+                <p>Product Code: {this.state.id}</p>
                 <Link to='/'>Back</Link>
             </div>
         )
