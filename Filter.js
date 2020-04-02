@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import Form from 'react-bootstrap/Form';
 import { connect } from 'react-redux';
+import ProductFilters from './Filters/ProductFilters';
+import { updateFilterProductType } from './Actions';
 
 
 class Filter extends Component {
     handleChange = (e) => {
-        console.log(this.props);
-        console.log(e.target.value);
         this.props.updateFilterProductType(e.target.value);
     }
     render() {
@@ -21,6 +21,7 @@ class Filter extends Component {
                         </Form.Control>
                     </Form.Group>
                 </Form>
+                <ProductFilters />
             </div>
         )
     }
@@ -29,10 +30,7 @@ class Filter extends Component {
 const mapDispatchToProps = (dispatch) => {
     return {
         updateFilterProductType: (filter_product_type) => {
-            dispatch({
-                type: 'UPDATE_FILTER_PRODUCT_TYPE',
-                filter_product_type: filter_product_type
-            })
+            dispatch(updateFilterProductType(filter_product_type))
         }
     }
 }

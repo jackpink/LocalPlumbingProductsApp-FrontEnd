@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { ENDPOINT, logError, validateResponse, readResponseAsJSON } from '../Utils';
 import Specifications from '../Specifications';
+import ProductImages from '../ProductImages';
 
 class ProductView extends Component {
     state = {
@@ -52,9 +53,7 @@ class ProductView extends Component {
                 <h1>Product Page</h1>
                 <h2>{this.state.Name}</h2>
                 <div id="image_container">
-                    {console.log('async')}
-                    {console.log(this.state.Photos)}
-                    <img className="product_image_tile" alt="Not available" src={this.state.Photos[0]}/>
+                    <ProductImages imageLinks={this.state.Photos}/>
                 </div>
                 <p>Product Code: {this.state.id}</p>
                 <Link to='/'>Back</Link>

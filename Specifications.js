@@ -12,7 +12,7 @@ const Specifications = (props) => {
                 </thead>
                 <tbody>
                     {specifications.map(spec=> (
-                        <tr>
+                        <tr >
                             <th>{spec.Spec}</th>
                             <td>{spec.Value}</td>
                         </tr>

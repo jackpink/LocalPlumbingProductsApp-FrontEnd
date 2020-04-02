@@ -1,7 +1,7 @@
 import React from 'react';
 import Filter from '../Filter';
 import Results from '../Results';
-import { Row } from "react-bootstrap";
+import { Row, Col } from "react-bootstrap";
 
 
 const HomeView = () => {
@@ -11,7 +11,9 @@ const HomeView = () => {
                 <p>here</p>
             </Row>
             <Row>
-                <Filter />
+                <Col xs={12}>
+                    <Filter />
+                </Col>
             </Row>
             <Row>
                 <Results />
