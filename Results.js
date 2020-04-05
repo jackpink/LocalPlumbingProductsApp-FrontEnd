@@ -32,7 +32,8 @@ class Results extends Component {
     }
 
     componentDidUpdate(prevProps, prevState) {
-        if (prevProps !== this.props) {
+        if (prevProps.filter_product_type !== this.props.filter_product_type) {
+            // Get new Resultslist from Backend API
             const logResult = ((result) => {
                 this.setState({resultsList: result.results, loading: false}, () => {
                 });
@@ -48,7 +49,14 @@ class Results extends Component {
             }
 
             const { filter_product_type, s_trap_filter } = this.props;
+    
             fetchJSON(getAPIendpoint(filter_product_type, [s_trap_filter]));
+        }
+        if (prevProps.front_end_filters !== this.props.front_end_filters) {
+            // Update front end filters according to what is currently in use
+            const { filter_product_type, s_trap_filter } = this.props;
+            console.log(s_trap_filter);
+            // Loop through filters and if true then apply function?
         }
     }
 
@@ -65,7 +73,7 @@ class Results extends Component {
                             <div className="row">
                                 {this.state.resultsList.length? (
                                     this.state.resultsList.map(item=> (
-                                        <Col xs={9} md={3} key={JSON.parse(item)._id}>
+                                        <Col xs={12} md={3} key={JSON.parse(item)._id}>
                                             <div id="product_container">
                                                 <Product product={JSON.parse(item)} key={item._id}/>
                                             </div>
@@ -89,7 +97,7 @@ class Results extends Component {
 const mapStateToProps = (state) => {
     return {
         filter_product_type: state.filter_product_type,
-        s_trap_filter: state.s_trap_filter
+        s_trap_filter: state.front_end_filters.s_trap_filter
     }
 }
 

@@ -42,10 +42,22 @@ const toiletsuitesEndpoint = (product_filters) => {
 export const getAPIendpoint = (filter_product_type, product_filters) => {
     switch (filter_product_type) {
         case "toilet_suites":
-            return ENDPOINT + toiletsuitesEndpoint(product_filters);
-        case "basins":
+            // Example of using backend API Query
+            // return ENDPOINT + toiletsuitesEndpoint(product_filters);
             return ENDPOINT + "/" + filter_product_type;
         default:
-            return "Not Found";
+            return ENDPOINT + "/" + filter_product_type;
+    }
+}
+
+// 
+export const getHorizontalDirection = (value) => {
+    if (value < 0) {
+        return "Left of";
+    }
+    if (value > 0) {
+        return "Right of";
+    } else {
+        return "from"
     }
 }

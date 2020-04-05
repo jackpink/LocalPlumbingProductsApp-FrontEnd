@@ -21,9 +21,15 @@ class Filter extends Component {
                         </Form.Control>
                     </Form.Group>
                 </Form>
-                <ProductFilters />
+                <ProductFilters filter_product_type={this.props.filter_product_type}/>
             </div>
         )
+    }
+}
+
+const mapStateToProps = (state) => {
+    return {
+        filter_product_type: state.filter_product_type,
     }
 }
 
@@ -35,4 +41,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-export default connect(null, mapDispatchToProps)(Filter);
+export default connect(mapStateToProps, mapDispatchToProps)(Filter);
